@@ -1,5 +1,5 @@
 --- 
-title: "A Introduction to Data wrangling with R"
+title: "An Introduction to Data wrangling with R"
 author: "Juqiang Chen"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
