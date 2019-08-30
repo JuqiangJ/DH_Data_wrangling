@@ -1,0 +1,121 @@
+# Importing your data
+
+## from CSV/TXT
+You can import data in csv (comma seperate) or text files that use a different delimiter to seperate data. There two groups of function you can use:
+
+* Base R functions
+* readr package functions
+
+***
+
+**read.table()** is a multipurpose function in R for importing data, and this function has two special cases: **read.csv()** and **read.delim()**.
+
+* read.csv() is a wrapper for read.table with some default settings: sep = "," ; header = TRUE.
+* read.delim() is a wrapper for read.table with some default settings: sep = "\t" ; header = TRUE.
+
+***
+
+**readr package** functions
+you need to *library(readr)*
+
+readr functions are 10 times faster than basi functions.
+
+* read_csv(): you can specify col_types = list(col_double(), col_character()), or col_names = c("a","b")
+* read_delim()
+* read_table()
+
+```{r eval = FALSE}
+participant_1 <- read.csv("data/participant_1.csv")
+#stringAsFactor = FALSE
+
+participant_2 <- read.csv("data/participant_2.csv")
+
+## from TXT
+participant_1_tab <- read.delim("~/OneDrive_Backup/OneDrive - Western Sydney University/JuqiangCHEN/310_Tutorial/DH_Data_wrangling/data/participant_1_tab.txt")
+
+```
+
+
+## from EXCEL
+```{r eval = FALSE}
+library(readxl)
+excel_test <- read_excel("data/excel_test.xlsx", sheet = "participant_1")
+
+```
+## Batch import
+
+```{r eval = FALSE}
+
+rbind(participant_1, participant_2)
+
+all = rbind(participant_1, participant_2)
+
+# what about 10 more people?
+
+participant_3 <- read.csv("data/participant_3.csv")
+
+# get all the filenames of the folder
+
+getwd() # get working directory
+
+paste0(getwd(), "/data") #specify the directory for the data
+
+list.files(paste0(getwd(), "/data"),full.names=T) # full.names=T means getting the full path
+
+filename = list.files(paste0(getwd(), "/data"),full.names=T, pattern = ".csv") # get only csv files
+
+# now you need a loop
+df = data.frame()
+bin = data.frame()
+for (i in 1:length(filename)){
+  # length(filename) = how many files
+  bin = read.csv(filename[i])
+  df = rbind(df, bin)
+}
+
+
+```
+
+## Take a glimpse of the dataframe
+
+R has some basic function that can help us have a quick look at the dataframe import.
+
+* summary()
+
+  1 For each factor variable, the levels are printed.
+
+  2 For each numeric variable, the minimun, first quantile, median, mean, third quantile and the maximun values are shown.
+
+* str() structure
+
+This gives the information about the types of variables your dataframe contain.
+
+***
+
+Alternatively, you hover your mouse over the head of the table, it will give you basic information about the variable type of the column.
+
+***
+There are also other packages that offer data summer like the **describe()**, similar to **summary()**, and **contents()**, similar to **str()** in the Hmisc package. 
+
+```{r eval= FALSE}
+summary(all)
+
+str(all)
+
+library(Hmisc)
+
+describe(all)
+
+contents(all)
+
+
+```
+
+
+
+
+
+
+
+
+

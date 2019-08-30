@@ -1,0 +1,205 @@
+
+# Basic data structures in R {#intro}
+
+Before we get our hands dirty in doing actual data analysis, it is desirable to take one step back and think about what types of variables and data structures we are dealing with. 
+
+Before we talk about data structure in R, let's first think about how data can be categorized. 
+
+## Nominal, ordinal, interval/ratio variables
+
+
+- **Nominal variables** are data whose levels are labels or descriptions, and which cannot be ordered.  (e.g. sex, school, or nationality).  They are categorical in natural with different levels.
+
+- **Ordinal variables** can be ordered, or ranked in logical order, but the interval between levels of the variables are not necessarily known.  
+
+>For example, when doing a survey, participants will be asked to rateSubjective measurements are often ordinal variables, e.g. a Likert ranking scale; level of education for adults (“less than high school”, “high school”, “associate’s degree”). We can logically assign numbers to levels of an ordinal variable, and can treat them in order, but shouldn’t treat them as numeric:  “strongly agree” and “neutral” may not average out to an “agree.”
+
+- **Interval/ratio variables** are measured or counted values:  age, height, weight, number of students.  The interval between numbers is known to be equal:  the interval between one kilogram and two kilograms is the same as between three kilograms and four kilograms.  Interval/ratio data are also called “quantitative” data, although ordinal data are also quantitative. 
+
+  - Discrete: values are necessarily whole numbers or other discrete values, such as population or counts of items
+ 
+  - continuous variables: values can take on any value within an interval, and so can be expressed as decimals.  They are often measured quantities. 
+ 
+> For example, in theory a weight could be measured as 1 kg, 1.01 kg, or 1.009 kg, and so on.  Age could also be considered a continuous variable, though we often treat it as a discrete variable, by rounding it to the most recent birthday.
+
+The variable type will determine (1) statistical analysis; (2) the way we summarize data with statistics and plots. We will be elaborating on this in the Explorative Data Analysis course.
+
+Variables can be stored in R in different data types. Normial and ordinal variables can be stored as character data or factors (with levels) whil interval data can be stored as numbers either as integer or numeric (real or decimal). 
+
+If you have only one variable, you can store it in a vector. More often than not, you have a bunch of variables that should be store or imported as a matrix or data frame.
+
+## 1D data structure: vectors
+
+A vector is a sequence of data elements of the same basic type: integer, double, logical or character. All elements of a vector must be the same type.
+
+### Creating vectors
+
+```{r}
+a = 8:17
+
+b <- c(9, 10, 100, 38)
+
+c = c (TRUE, FALSE, TRUE, FALSE)
+
+c = c (T, F, T, F)
+
+d = c ("TRUE", "FALSE", "FALSE")
+
+# You can change the type of a vector with as.vector function.
+
+as.vector(b, mode = "character")
+
+# When you put elements of different types in one vector, R will automatically change the type of some elements to keep the whole vector homogenous.
+
+e = c(9,10, "ab", "cd")
+
+f = c(10, 11, T, F)
+
+```
+
+
+
+Some basic function in R that you can play with now to generate vectors.
+
+```{r}
+
+
+
+a = 9:20 +1
+
+b = seq (1, 10)
+
+c = seq (1, 20, by= 2)
+
+d = rep (5, 4)
+
+e = rep (c(1,2,3), 4)
+
+f = rep (c(1,2,3), each = 4)
+
+# Now that you have a vector, you can do some Maths.
+
+max(a)
+
+min(a)
+
+range(a)
+
+sum(a)
+
+mean(a)
+
+median(a)
+
+quantile(a)
+
+sd(a)
+
+round(a, 2)
+
+```
+
+### creating list objects
+We can put vectors of different types (e.g., number, logic or character) and lengths in a list object.
+
+```{r}
+
+list = list(a, b, c, d, e, f)
+
+# More often than not, we do not make list ourselves but have to deal with list when we get outputs from stats models.
+
+```
+
+
+## 2D data structures: matrice and data frames
+
+Most of us have some experience with Excel spreadsheet. Data in a spreadsheet are arranged by rows and columns in a rectangular space. This is a typical 2 dimensional data structure. In R, we can have two way of forming tabular data like a spreadsheet: matrix and dataframe.
+
+A matrix is a collection of data elements arranged in a two-dimensional rectangular layout and all the elements must be of the same type (e.g., numeric or character). Dataframe is similar to matrix in shape but only differ in that we can have different types of data in each column. Thus, in data analysis, we use dataframe more often than matrix.
+
+let's generate a dataframe from scratch.
+
+```{r}
+id = seq(1, 40)
+
+gender = rep(c("male", "female"), 5)
+
+maths = rnorm(40, mean = 70, sd = 5)
+
+english = rnorm(40, mean = 80, sd = 9)
+
+music = rnorm(40, mean = 75, sd = 10)
+
+pe = rnorm(40, mean = 86, sd = 12)
+
+df1 = data.frame (id, gender, maths, english)
+
+
+```
+
+Now let's explore the data frame we just created.
+
+```{r}
+
+str(df1)
+
+summary(df1)
+
+nrow(df1)
+
+ncol(df1)
+
+attributes(df1)
+
+
+```
+
+### what if I want to change column names or add variable to the df?
+
+```{r}
+df2 = data.frame (id = id, gender = gender, maths = maths, english = english)
+
+# cbind(df2, pe)
+
+df2 = cbind(df2, pe)
+
+colnames(df2) = c("ID", "SEX","MATHS","ENGLISH","PE")
+
+head(df2)
+
+# names(df2 ) = c("ID", "SEX","MATHS","ENGLISH","PE")
+
+# rownames(df2 )
+
+```
+
+
+
+
+### Subsetting dataframes
+
+We all know how to select part of an Excel spreadsheet by moving our mouse. In R, when we want to select part of a dataframe, we use this formula, dataframe[row, column].
+
+There are various ways we can use this formula and believe it or not, you will love them!
+
+
+```{r}
+df2[2:5, ]
+
+df2[ , 1:2]
+
+df2[ , c("ENGLISH", "PE")]
+
+df2[c(1,2,3), ]
+
+df2[seq(1, 40, 2), ]
+
+```
+## summary
+
+| Dimensions | Homogenous | Heterogeneous |
+|-----------:|:----------:|:--------------|
+| 1D | Atomic Vector | List |
+| 2D | Matrix| Data frame |
+| nD | Array |   |
+

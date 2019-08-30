@@ -1,0 +1,199 @@
+# Tranform your data
+
+## Selecting variables of interest
+When we get a dataset, one of the most important things to do is to pick the variables we need, especially when the raw dataset has too many columns.
+
+```{r message=FALSE}
+library(tidyverse)
+
+# getting the data
+filename = list.files(paste0(getwd(), "/data"),full.names=T, pattern = ".csv") # get only csv files
+
+df = data.frame()
+bin = data.frame()
+for (i in 1:length(filename)){
+  # length(filename) = how many files
+  bin = read.csv(filename[i])
+  df = rbind(df, bin)
+}
+
+#head(df)
+
+#colnames(df)
+
+```
+
+In this dataset *df*, we need to get the *ID* of participants as stored in Subject, the *stimuli* they hear under the column name "tone.Trial", their *response* "insex1.RESP", their *response time* in "insex1.RT", and the *experiment conditions* in "Procedure.Block.".
+
+```{r}
+
+df_new = select(df, subject = "Subject",
+                stimuli = "tone.Trial.",
+                response = "insex1.RESP",
+                response_rt = "insex1.RT",
+                block = "Procedure.Block.",
+                ExperimentName)
+head(df_new)
+
+# select by names
+head(select(df_new, subject: response))
+head(select(df_new, subject: response))
+
+head(select(df_new, 1: 3))
+
+head(select(df_new, -subject))
+
+head(select(df_new, ExperimentName, everything()))
+
+# change column names
+
+head(rename(df_new, exp = ExperimentName))
+
+```
+
+
+
+
+## Filtering observations
+
+Not all the data in the raw dataset are useful. We can use filter() function to select rows or observation based on some criteria.
+
+Three useful logical operators for forming conditions:
+
+ + **&** means "and"
+ 
+ + **|** means "or"
+ 
+ + **!** means "not"
+
+```{r}
+# removing data from the practice block
+df_new = filter(df_new, block != "pracproc")
+head(df_new)
+# removing missing data in response column
+df_new = filter(df_new, !is.na(response))
+df_new = filter(df_new, response != "")
+head(df_new)
+
+# pick up stimuli 33 and 21
+
+head(filter(df_new, stimuli == 33 | stimuli == 21))
+
+head(filter(df_new, stimuli %in% c(33, 21)))
+
+# removing data with respones time shorter than 200
+
+head(filter(df_new, response_rt < 200))
+
+head(filter(df_new, response_rt > 200))
+
+```
+
+## changing the order of rows
+
+```{r}
+# arrange the dataframe by stimuli and response_rt columns
+head(arrange(df_new, stimuli, response_rt))
+
+# arrange the dataframe by stimuli and the descending order of block columns
+head(arrange(df_new, stimuli, desc(block)))
+
+
+
+```
+
+## Generating new variables
+
+We can generate new variable based on existing variables using the function mutate() and transmutate(). The difference is mutate will keep the original variables while transmutate will erase orginal variables.
+
+```{r}
+# you can add, minus, log transform any numberic column
+head(mutate(df_new, response_rt_new = log(response_rt)))
+
+# you can extract part of the information from a character variable
+
+head(mutate(df_new, ISI = str_extract(ExperimentName, "2000|500")))
+
+head(transmute(df_new, ISI = str_extract(ExperimentName, "2000|500")))
+
+# you can paste two variabls together
+
+head(transmute(df_new, ISI = paste(stimuli, block, sep = "_")))
+
+# you can recode a variable
+
+head( mutate(df_new, block = recode(block, 
+                         block1 = "ss", block2 = "ss",
+                         block3 = "sd", block4 = "sd",
+                         block5 = "ds", block6 = "ds",
+                         block7 = "dd")))
+
+```
+## the pipeline “%>%”
+You may have noticed the repetition in the above codes. We have to specify the dataframe every time we use a function and have to store it in a new name if we want to keep the original dataframe.
+
+Using pipeline *%>%* can reduce the redundancy and the mistake we may make when we have a dozen of dataframes.
+
+
+```{r}
+df_final = df %>%
+  select(., subject = "Subject",
+                stimuli = "tone.Trial.",
+                response = "insex1.RESP",
+                response_rt = "insex1.RT",
+                block = "Procedure.Block.",
+                exp = ExperimentName)%>%
+  filter(block != "pracproc" & !is.na(response) & response != "")%>%
+  mutate(ISI = str_extract(exp, "2000|500"),
+         block = recode(block, 
+                         block1 = "ss", block2 = "ss",
+                         block3 = "sd", block4 = "sd",
+                         block5 = "ds", block6 = "ds",
+                         block7 = "dd"))
+           
+  
+  
+
+```
+
+## Summarizing 
+
+Summarize() and group_by () are often used together to give us some basic summary of the data.
+
+```{r}
+df_final%>%
+  group_by(subject)%>%
+  summarize(count = n())
+
+df_final%>%
+  group_by(subject, stimuli)%>%
+  summarize(rt = mean(response_rt))
+
+df_final%>%
+  group_by(stimuli, response)%>%
+  mutate(counter = 1)%>%
+  summarize(count = sum(counter))%>%
+  spread(stimuli, value = count)
+
+
+df_final%>%
+  group_by(stimuli,response)%>%
+  mutate(counter = 1)%>%
+  summarize(counter = sum(counter))%>%
+  mutate( percentage = counter/sum(counter),
+          sum = sum(counter))
+ 
+
+table.final = df_final%>%
+  group_by(stimuli,response)%>%
+  mutate(counter = 1)%>%
+  summarize(counter = sum(counter))%>%
+  mutate( percentage = counter/sum(counter),
+          sum = sum(counter))%>%
+  select(stimuli,percentage, response)%>%
+  spread(stimuli, value = round(percentage, 2))
+
+library(knitr)
+kable(table.final, caption = "Percentage of choice")
+
+```
