@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-08-30">
+<meta name="date" content="2019-08-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,8 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="tidy-your-data.html"><a href="tidy-your-data.html"><i class="fa fa-check"></i><b>5</b> Tidy your data</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> what is tidy data?</a></li>
 <li class="chapter" data-level="5.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#tools-in-tidyr"><i class="fa fa-check"></i><b>5.2</b> Tools in tidyr</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather ( )</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread ( )</a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidy-your-data.html"><a href="tidy-your-data.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate()</a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidy-your-data.html"><a href="tidy-your-data.html#unite"><i class="fa fa-check"></i><b>5.2.4</b> unite()</a></li>
 </ul></li>
@@ -144,9 +144,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="tranform-your-data.html"><a href="tranform-your-data.html"><i class="fa fa-check"></i><b>6</b> Tranform your data</a><ul>
 <li class="chapter" data-level="6.1" data-path="tranform-your-data.html"><a href="tranform-your-data.html#selecting-variables-of-interest"><i class="fa fa-check"></i><b>6.1</b> Selecting variables of interest</a></li>
 <li class="chapter" data-level="6.2" data-path="tranform-your-data.html"><a href="tranform-your-data.html#filtering-observations"><i class="fa fa-check"></i><b>6.2</b> Filtering observations</a></li>
-<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> changing the order of rows</a></li>
+<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> Changing the order of rows</a></li>
 <li class="chapter" data-level="6.4" data-path="tranform-your-data.html"><a href="tranform-your-data.html#generating-new-variables"><i class="fa fa-check"></i><b>6.4</b> Generating new variables</a></li>
-<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> the pipeline “%&gt;%”</a></li>
+<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> The pipeline “%&gt;%”</a></li>
 <li class="chapter" data-level="6.6" data-path="tranform-your-data.html"><a href="tranform-your-data.html#summarizing"><i class="fa fa-check"></i><b>6.6</b> Summarizing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="build-your-own-function.html"><a href="build-your-own-function.html"><i class="fa fa-check"></i><b>7</b> Build your own function</a></li>
@@ -176,9 +176,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data-analysis-workflow" class="section level2">
 <h2><span class="header-section-number">3.1</span> Data analysis workflow</h2>
 <p>A common workflow for data analysis involves importing data, cleaning data, transforming data, visualizing and modeling data for reports or papers.</p>
-<p>If you have not worked with R before, you may use excel to do data cleaning and simple tranformation work with pivot tables and save the results in a new spreadsheet. You can also draw bar charts, pie charts and histrograms in the spreadsheet and save it as another spreadsheet. Then when you need to do more complex stats modeling like ANOVA or linear regression, you may import the spreadsheet into SPSS and other stats packages.</p>
-<p>Usually at the end of the project, you will find a number of .xsl or .csv files in your <strong>data</strong> folder. You may name them with the analysis you do or the data you generate them. But after six months, you may feel unsure about what is the meaning of the files, not to mention, others who may want to use it.</p>
-<p>This issue involves lots of decision to be made in data management. But if you are using R, things can be easily because each manipulation of the data is recorded and fully reproducible.</p>
+<p>If you have not worked with R before, you may use excel to do data cleaning and do simple tranformation work with pivot tables and save the results in a new spreadsheet. You can also draw bar charts, pie charts and histrograms in the spreadsheet. One thing I feel annoying is that in order to keep a record of what you have done, you need to store a couple of sheets inside a workbook. Still, you can miss some steps and cannot recall you have done after a month.</p>
+<p>When you need to do more complex stats modeling like ANOVA or linear regression, you may import the spreadsheet into SPSS and other stats packages.But if the data are not arranged in the way as required by these packages, chances are that you will have to go back to Excel again.</p>
+<p>If you are lucky and you get all the analysis done. Usually at the end of the project, you will find a number of .xsl or .csv files in your <strong>data</strong> folder. You may name them with the analysis you do or the date you generate them. But after six months, you may feel unsure about what is in these files, not to mention, others who want to reuse it.</p>
+<p>But if you are using R, things can be easiler because each step in the data analysis is recorded and fully reproducible.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/DA_workflow.png&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:figure2"></span>
 <img src="img/DA_workflow.png" alt="Data analysis workflow" width="100%" />
@@ -189,7 +190,7 @@ Figure 3.1: Data analysis workflow
 </div>
 <div id="data-wrangling" class="section level2">
 <h2><span class="header-section-number">3.2</span> Data wrangling</h2>
-<p>Data wrangling (see the above figure in red box) involves some basic procedures (importing, tidying and transforming) in the early stage of data analysis. R,and relevant packages, <em>tidyverse</em> in particular, provide a number of functions that can help us dealing with data cleaning and tranformation. We will be learning how to use these functions in the follow sessions.</p>
+<p>Data wrangling (see the above figure in red box) involves some basic procedures (importing, tidying and transforming). R,and its packages, <em>tidyverse</em> in particular, provide a number of functions that can help us deal with data cleaning and tranformation. We will be learning how to use these functions in the follow sessions.</p>
 
 </div>
 </div>

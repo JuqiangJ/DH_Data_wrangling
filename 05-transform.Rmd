@@ -23,7 +23,7 @@ for (i in 1:length(filename)){
 
 ```
 
-In this dataset *df*, we need to get the *ID* of participants as stored in Subject, the *stimuli* they hear under the column name "tone.Trial", their *response* "insex1.RESP", their *response time* in "insex1.RT", and the *experiment conditions* in "Procedure.Block.".
+In this dataset *df*, we need to get the *ID* of participants as stored in Subject, the *stimuli* they heard in "tone.Trial", their *response* in "insex1.RESP", their *response time* in "insex1.RT", and the *experiment conditions* in "Procedure.Block.".
 
 ```{r}
 
@@ -51,12 +51,9 @@ head(rename(df_new, exp = ExperimentName))
 
 ```
 
-
-
-
 ## Filtering observations
 
-Not all the data in the raw dataset are useful. We can use filter() function to select rows or observation based on some criteria.
+Not all the data in the raw dataset are useful. We can use filter( ) function to select rows or observations based on some criteria.
 
 Three useful logical operators for forming conditions:
 
@@ -89,7 +86,7 @@ head(filter(df_new, response_rt > 200))
 
 ```
 
-## changing the order of rows
+## Changing the order of rows
 
 ```{r}
 # arrange the dataframe by stimuli and response_rt columns
@@ -104,7 +101,7 @@ head(arrange(df_new, stimuli, desc(block)))
 
 ## Generating new variables
 
-We can generate new variable based on existing variables using the function mutate() and transmutate(). The difference is mutate will keep the original variables while transmutate will erase orginal variables.
+We can generate new variables based on existing variables using the function mutate() and transmutate(). The difference is mutate will keep the original variables while transmutate will erase orginal variables.
 
 ```{r}
 # you can add, minus, log transform any numberic column
@@ -129,30 +126,30 @@ head( mutate(df_new, block = recode(block,
                          block7 = "dd")))
 
 ```
-## the pipeline “%>%”
+## The pipeline “%>%”
 You may have noticed the repetition in the above codes. We have to specify the dataframe every time we use a function and have to store it in a new name if we want to keep the original dataframe.
 
-Using pipeline *%>%* can reduce the redundancy and the mistake we may make when we have a dozen of dataframes.
-
+Using pipeline *%>%* can reduce the redundancy and the mistake we may make when we have a dozen of dataframes to refer to.
 
 ```{r}
 df_final = df %>%
+  # selecting the columns we need
   select(., subject = "Subject",
                 stimuli = "tone.Trial.",
                 response = "insex1.RESP",
                 response_rt = "insex1.RT",
                 block = "Procedure.Block.",
                 exp = ExperimentName)%>%
+  #filtering out useless data
   filter(block != "pracproc" & !is.na(response) & response != "")%>%
+  # generating new variables based on old variables
   mutate(ISI = str_extract(exp, "2000|500"),
          block = recode(block, 
                          block1 = "ss", block2 = "ss",
                          block3 = "sd", block4 = "sd",
                          block5 = "ds", block6 = "ds",
                          block7 = "dd"))
-           
-  
-  
+
 
 ```
 
@@ -161,6 +158,7 @@ df_final = df %>%
 Summarize() and group_by () are often used together to give us some basic summary of the data.
 
 ```{r}
+
 df_final%>%
   group_by(subject)%>%
   summarize(count = n())
@@ -188,10 +186,10 @@ table.final = df_final%>%
   group_by(stimuli,response)%>%
   mutate(counter = 1)%>%
   summarize(counter = sum(counter))%>%
-  mutate( percentage = counter/sum(counter),
+  mutate( percentage = round(counter/sum(counter),2),
           sum = sum(counter))%>%
   select(stimuli,percentage, response)%>%
-  spread(stimuli, value = round(percentage, 2))
+  spread(stimuli, value = percentage)
 
 library(knitr)
 kable(table.final, caption = "Percentage of choice")

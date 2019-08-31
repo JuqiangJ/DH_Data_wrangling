@@ -1,8 +1,105 @@
 # Build your own function
 
->function_name = function(input){
-> do thing 1
-> do thing 2
-> return(output)
-> }
+Combining the pipeline with different functions offered by tidyverse, you can have chunks of codes that fit into your specific needs of data analysis. But you may want to use these chunks again and again in the script you write. This will result in very long script. It is too bad for your eyes!!
 
+Thus we need to package these chunks into functions, so that every time we use them, we only need to refer to their names and put the dataframe in the parenthesis like we use other functions. 
+
+That sound very cool! But is that difficult? 
+
+noooooo! Not at all!
+
+Basically you only need to know the function structure and think of a name for your function. 
+
+```{r}
+# function_name = function(input){ 
+#  do thing 1
+#  do thing 1
+#  return(output)
+# }
+
+# let's make a function for data cleaning
+
+data_clean = function(input){
+  #copy and paste the chunk we wrote earlier
+  # change this line "df_final = df %>% to
+  input %>%
+  # selecting the columns we need
+  select(., subject = "Subject",
+                stimuli = "tone.Trial.",
+                response = "insex1.RESP",
+                response_rt = "insex1.RT",
+                block = "Procedure.Block.",
+                exp = ExperimentName)%>%
+  #filtering out useless data
+  filter(block != "pracproc" & !is.na(response) & response != "")%>%
+  # generating new variables based on old variables
+  mutate(ISI = str_extract(exp, "2000|500"),
+         block = recode(block, 
+                         block1 = "ss", block2 = "ss",
+                         block3 = "sd", block4 = "sd",
+                         block5 = "ds", block6 = "ds",
+                         block7 = "dd")) -> output
+  
+  return(output)
+}
+
+# done!!
+
+
+```
+
+
+
+Once you run the code, you will see a new function named *data_clean* appear in the *environment* tab on the right side of R-studio. This means a new function has been made.
+
+Now we can use our new function.
+
+```{r}
+library(tidyverse)
+participant_1 <- read.csv("data/participant_1.csv")
+participant_2 <- read.csv("data/participant_2.csv")
+
+#head(participant_1)
+
+#use the function
+
+participant_1_clean = data_clean(participant_1)
+
+head(participant_1_clean)
+
+# do the same thing for participant_2
+participant_2_clean = data_clean(participant_2)
+
+head(participant_2_clean )
+
+```
+
+We can make funtions that meet our specific requirements and reuse them later. For example I want to generate a percentage of choice table for each participant. Since the requirements are too specific, I may not find a ready-to-use package with this function. Thus I can make one like this.
+
+```{r}
+
+# we reuse the chunk of codes we just made
+
+choice_table = function(input){
+  input%>%
+  group_by(stimuli,response)%>%
+  mutate(counter = 1)%>%
+  summarize(counter = sum(counter))%>%
+  mutate( percentage = round(counter/sum(counter),2),
+          sum = sum(counter))%>%
+  select(stimuli,percentage, response)%>%
+  spread(stimuli, value = percentage) -> output
+  # do not forget this line
+  return(output)
+}
+
+prt_2 = choice_table(participant_2_clean)
+
+prt_2
+
+
+```
+
+Now the question is: do we need two function *data_clean* and *choice_table*?
+
+The answer is that it depends on your data and your workflow. Sometime you can put the two functions together and get the results straight away. But you may want to have the clean data for other purposes. In that case, you may want to keep the two functions seperate.

@@ -1,1 +1,15 @@
 # Resources
+
+R is an open source software and R-studio is also free of charge. This facilitates a very friendly and active user community. Almost everything is free (except for some hard copy books but they usually have free online version).
+
+There are so many book you can google or amazon about data science with R, but I recommend this book which offers me many useful tips and examples, *R for Data Science* by Garrett Grolemund and Hadley Wickham and it is available online https://r4ds.had.co.nz/index.html.
+
+For those who want to have some cheatsheets of R functions, please go to this: https://www.rstudio.com/resources/cheatsheets/#keras 
+
+For Digital Humanity specialists or language researchers, R offers a variaty of packages that can help you to make maps, do stylometric research on texts, do social network analysis and text mining and more. You can google the things you want to do and add "with R". Nine out of ten times you will find a package or several packages.
+
+Have fun with R!
+
+
+
+

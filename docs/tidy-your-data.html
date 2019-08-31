@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-08-30">
+<meta name="date" content="2019-08-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,8 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="tidy-your-data.html"><a href="tidy-your-data.html"><i class="fa fa-check"></i><b>5</b> Tidy your data</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> what is tidy data?</a></li>
 <li class="chapter" data-level="5.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#tools-in-tidyr"><i class="fa fa-check"></i><b>5.2</b> Tools in tidyr</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather ( )</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread ( )</a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidy-your-data.html"><a href="tidy-your-data.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate()</a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidy-your-data.html"><a href="tidy-your-data.html#unite"><i class="fa fa-check"></i><b>5.2.4</b> unite()</a></li>
 </ul></li>
@@ -144,9 +144,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="tranform-your-data.html"><a href="tranform-your-data.html"><i class="fa fa-check"></i><b>6</b> Tranform your data</a><ul>
 <li class="chapter" data-level="6.1" data-path="tranform-your-data.html"><a href="tranform-your-data.html#selecting-variables-of-interest"><i class="fa fa-check"></i><b>6.1</b> Selecting variables of interest</a></li>
 <li class="chapter" data-level="6.2" data-path="tranform-your-data.html"><a href="tranform-your-data.html#filtering-observations"><i class="fa fa-check"></i><b>6.2</b> Filtering observations</a></li>
-<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> changing the order of rows</a></li>
+<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> Changing the order of rows</a></li>
 <li class="chapter" data-level="6.4" data-path="tranform-your-data.html"><a href="tranform-your-data.html#generating-new-variables"><i class="fa fa-check"></i><b>6.4</b> Generating new variables</a></li>
-<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> the pipeline “%&gt;%”</a></li>
+<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> The pipeline “%&gt;%”</a></li>
 <li class="chapter" data-level="6.6" data-path="tranform-your-data.html"><a href="tranform-your-data.html#summarizing"><i class="fa fa-check"></i><b>6.6</b> Summarizing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="build-your-own-function.html"><a href="build-your-own-function.html"><i class="fa fa-check"></i><b>7</b> Build your own function</a></li>
@@ -423,7 +423,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="tools-in-tidyr" class="section level2">
 <h2><span class="header-section-number">5.2</span> Tools in tidyr</h2>
 <div id="gather" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> gather()</h3>
+<h3><span class="header-section-number">5.2.1</span> gather ( )</h3>
 <p>For some datasets, some of the column names are not names of variables but <strong>values</strong> of a variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(table4a, <span class="dt">caption=</span> <span class="st">&quot;year missing, cases&quot;</span>)</code></pre></div>
 <table>
@@ -451,13 +451,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td align="right">212258</td>
 <td align="right">213766</td>
 </tr>
-<tr class="even">
-<td align="left">We need to gat</td>
-<td align="right">her years</td>
-<td align="right">like 1999 and 2000 into one variable <strong>year</strong>.</td>
-</tr>
 </tbody>
 </table>
+<p>We need to gather years like 1999 and 2000 into one variable <strong>year</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(table4a, <span class="st">&#39;1999&#39;</span>,<span class="st">&#39;2000&#39;</span>,<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year   cases
@@ -480,7 +476,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 6 China       2000  1280428583</code></pre>
 </div>
 <div id="spread" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> spread()</h3>
+<h3><span class="header-section-number">5.2.2</span> spread ( )</h3>
 <p>Sometime the observations are scattered across muiltiple rows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(table2, <span class="dt">caption =</span> <span class="st">&quot;b case and population missing&quot;</span>)</code></pre></div>
 <table>
@@ -578,7 +574,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<p>To sum up, gather() makes wide tables long while spread() make long tables wide. The key idea here is to think about the variable you want to explore and make sure that they are place in different columns.</p>
+<p>To sum up, gather() makes wide tables long while spread() makes long tables wide. The key idea here is to think about the variables you want to explore and make sure that they are placed in different columns. This is very important for data visualization and stats modeling in R.</p>
 <hr />
 </div>
 <div id="separate" class="section level3">
@@ -667,7 +663,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">5.2.4</span> unite()</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table_new =<span class="st"> </span><span class="kw">separate</span>(table3, year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;year1&quot;</span>, <span class="st">&quot;year2&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)
 
-<span class="kw">unite</span>(table_new, new, year1, year2)</code></pre></div>
+table_new</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     year1 year2 rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19    99    745/19987071     
+## 2 Afghanistan 20    00    2666/20595360    
+## 3 Brazil      19    99    37737/172006362  
+## 4 Brazil      20    00    80488/174504898  
+## 5 China       19    99    212258/1272915272
+## 6 China       20    00    213766/1280428583</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table_new, new, year1, year2)<span class="co"># by default there is an underscore between two parts.</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     new   rate             
 ##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
@@ -677,8 +683,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 Brazil      20_00 80488/174504898  
 ## 5 China       19_99 212258/1272915272
 ## 6 China       20_00 213766/1280428583</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># by default there is an underscore between two parts.</span>
-<span class="kw">unite</span>(table_new, new, year1, year2, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table_new, new, year1, year2, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     new   rate             
 ##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            

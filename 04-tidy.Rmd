@@ -27,7 +27,7 @@ kable(table4b, caption = "e year missing, population")
 
 ## Tools in tidyr 
 
-### gather()
+### gather ( )
 
 For some datasets, some of the column names are not names of variables but **values** of a variable.
 
@@ -35,7 +35,10 @@ For some datasets, some of the column names are not names of variables but **val
 kable(table4a, caption= "year missing, cases")
 
 ```
+
+
 We need to gather years like 1999 and 2000 into one variable **year**.
+
 ```{r}
 
 gather(table4a, '1999','2000',key = "year", value = "cases")
@@ -45,15 +48,18 @@ gather(table4b, '1999','2000',key = "year", value = "population")
 ```
 
 
-### spread()
+### spread ( )
 Sometime the observations are scattered across muiltiple rows.
 
 ```{r}
+
 kable(table2, caption = "b case and population missing")
 
 spread(table2, key = type, value = count)
+
 ```
-To sum up, gather() makes wide tables long while spread() make long tables wide. The key idea here is to think about the variable you want to explore and make sure that they are place in different columns.
+
+To sum up, gather() makes wide tables long while spread() makes long tables wide. The key idea here is to think about the variables you want to explore and make sure that they are placed in different columns. This is very important for data visualization and stats modeling in R.
 
 ***
 
@@ -61,6 +67,7 @@ To sum up, gather() makes wide tables long while spread() make long tables wide.
 ### separate()
 
 In some cases, one column may contain a combination of two variables. We need to separate these two variables.
+
 ```{r}
 kable(table3, caption = "c case and population merged")
 
@@ -82,8 +89,10 @@ separate(table3, rate, into = c("cases", "population"), sep = -2)
 ```{r}
 table_new = separate(table3, year, into = c("year1", "year2"), sep = 2)
 
-unite(table_new, new, year1, year2)
-# by default there is an underscore between two parts.
+table_new
+
+unite(table_new, new, year1, year2)# by default there is an underscore between two parts.
+
 unite(table_new, new, year1, year2, sep = "")
 ```
 

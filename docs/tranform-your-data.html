@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-08-30">
+<meta name="date" content="2019-08-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,8 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="tidy-your-data.html"><a href="tidy-your-data.html"><i class="fa fa-check"></i><b>5</b> Tidy your data</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> what is tidy data?</a></li>
 <li class="chapter" data-level="5.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#tools-in-tidyr"><i class="fa fa-check"></i><b>5.2</b> Tools in tidyr</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather ( )</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread ( )</a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidy-your-data.html"><a href="tidy-your-data.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate()</a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidy-your-data.html"><a href="tidy-your-data.html#unite"><i class="fa fa-check"></i><b>5.2.4</b> unite()</a></li>
 </ul></li>
@@ -144,9 +144,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="tranform-your-data.html"><a href="tranform-your-data.html"><i class="fa fa-check"></i><b>6</b> Tranform your data</a><ul>
 <li class="chapter" data-level="6.1" data-path="tranform-your-data.html"><a href="tranform-your-data.html#selecting-variables-of-interest"><i class="fa fa-check"></i><b>6.1</b> Selecting variables of interest</a></li>
 <li class="chapter" data-level="6.2" data-path="tranform-your-data.html"><a href="tranform-your-data.html#filtering-observations"><i class="fa fa-check"></i><b>6.2</b> Filtering observations</a></li>
-<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> changing the order of rows</a></li>
+<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> Changing the order of rows</a></li>
 <li class="chapter" data-level="6.4" data-path="tranform-your-data.html"><a href="tranform-your-data.html#generating-new-variables"><i class="fa fa-check"></i><b>6.4</b> Generating new variables</a></li>
-<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> the pipeline “%&gt;%”</a></li>
+<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> The pipeline “%&gt;%”</a></li>
 <li class="chapter" data-level="6.6" data-path="tranform-your-data.html"><a href="tranform-your-data.html#summarizing"><i class="fa fa-check"></i><b>6.6</b> Summarizing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="build-your-own-function.html"><a href="build-your-own-function.html"><i class="fa fa-check"></i><b>7</b> Build your own function</a></li>
@@ -192,7 +192,7 @@ bin =<span class="st"> </span><span class="kw">data.frame</span>()
 <span class="co">#head(df)</span>
 
 <span class="co">#colnames(df)</span></code></pre></div>
-<p>In this dataset <em>df</em>, we need to get the <em>ID</em> of participants as stored in Subject, the <em>stimuli</em> they hear under the column name “tone.Trial”, their <em>response</em> “insex1.RESP”, their <em>response time</em> in “insex1.RT”, and the <em>experiment conditions</em> in “Procedure.Block.”.</p>
+<p>In this dataset <em>df</em>, we need to get the <em>ID</em> of participants as stored in Subject, the <em>stimuli</em> they heard in “tone.Trial”, their <em>response</em> in “insex1.RESP”, their <em>response time</em> in “insex1.RT”, and the <em>experiment conditions</em> in “Procedure.Block.”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_new =<span class="st"> </span><span class="kw">select</span>(df, <span class="dt">subject =</span> <span class="st">&quot;Subject&quot;</span>,
                 <span class="dt">stimuli =</span> <span class="st">&quot;tone.Trial.&quot;</span>,
                 <span class="dt">response =</span> <span class="st">&quot;insex1.RESP&quot;</span>,
@@ -261,7 +261,7 @@ bin =<span class="st"> </span><span class="kw">data.frame</span>()
 </div>
 <div id="filtering-observations" class="section level2">
 <h2><span class="header-section-number">6.2</span> Filtering observations</h2>
-<p>Not all the data in the raw dataset are useful. We can use filter() function to select rows or observation based on some criteria.</p>
+<p>Not all the data in the raw dataset are useful. We can use filter( ) function to select rows or observations based on some criteria.</p>
 <p>Three useful logical operators for forming conditions:</p>
 <ul>
 <li><p><strong>&amp;</strong> means “and”</p></li>
@@ -327,7 +327,7 @@ df_new =<span class="st"> </span><span class="kw">filter</span>(df_new, response
 ## 6     402      45        j         322 block6 Assim_main_chinese_500ms</code></pre>
 </div>
 <div id="changing-the-order-of-rows" class="section level2">
-<h2><span class="header-section-number">6.3</span> changing the order of rows</h2>
+<h2><span class="header-section-number">6.3</span> Changing the order of rows</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arrange the dataframe by stimuli and response_rt columns</span>
 <span class="kw">head</span>(<span class="kw">arrange</span>(df_new, stimuli, response_rt))</code></pre></div>
 <pre><code>##   subject stimuli response response_rt  block              ExperimentName
@@ -349,7 +349,7 @@ df_new =<span class="st"> </span><span class="kw">filter</span>(df_new, response
 </div>
 <div id="generating-new-variables" class="section level2">
 <h2><span class="header-section-number">6.4</span> Generating new variables</h2>
-<p>We can generate new variable based on existing variables using the function mutate() and transmutate(). The difference is mutate will keep the original variables while transmutate will erase orginal variables.</p>
+<p>We can generate new variables based on existing variables using the function mutate() and transmutate(). The difference is mutate will keep the original variables while transmutate will erase orginal variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># you can add, minus, log transform any numberic column</span>
 <span class="kw">head</span>(<span class="kw">mutate</span>(df_new, <span class="dt">response_rt_new =</span> <span class="kw">log</span>(response_rt)))</code></pre></div>
 <pre><code>##   subject stimuli response response_rt  block           ExperimentName
@@ -410,17 +410,20 @@ df_new =<span class="st"> </span><span class="kw">filter</span>(df_new, response
 ## 6     402      45        j         322    ds Assim_main_chinese_500ms</code></pre>
 </div>
 <div id="the-pipeline" class="section level2">
-<h2><span class="header-section-number">6.5</span> the pipeline “%&gt;%”</h2>
+<h2><span class="header-section-number">6.5</span> The pipeline “%&gt;%”</h2>
 <p>You may have noticed the repetition in the above codes. We have to specify the dataframe every time we use a function and have to store it in a new name if we want to keep the original dataframe.</p>
-<p>Using pipeline <em>%&gt;%</em> can reduce the redundancy and the mistake we may make when we have a dozen of dataframes.</p>
+<p>Using pipeline <em>%&gt;%</em> can reduce the redundancy and the mistake we may make when we have a dozen of dataframes to refer to.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_final =<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># selecting the columns we need</span>
 <span class="st">  </span><span class="kw">select</span>(., <span class="dt">subject =</span> <span class="st">&quot;Subject&quot;</span>,
                 <span class="dt">stimuli =</span> <span class="st">&quot;tone.Trial.&quot;</span>,
                 <span class="dt">response =</span> <span class="st">&quot;insex1.RESP&quot;</span>,
                 <span class="dt">response_rt =</span> <span class="st">&quot;insex1.RT&quot;</span>,
                 <span class="dt">block =</span> <span class="st">&quot;Procedure.Block.&quot;</span>,
                 <span class="dt">exp =</span> ExperimentName)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co">#filtering out useless data</span>
 <span class="st">  </span><span class="kw">filter</span>(block <span class="op">!=</span><span class="st"> &quot;pracproc&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(response) <span class="op">&amp;</span><span class="st"> </span>response <span class="op">!=</span><span class="st"> &quot;&quot;</span>)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># generating new variables based on old variables</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ISI =</span> <span class="kw">str_extract</span>(exp, <span class="st">&quot;2000|500&quot;</span>),
          <span class="dt">block =</span> <span class="kw">recode</span>(block, 
                          <span class="dt">block1 =</span> <span class="st">&quot;ss&quot;</span>, <span class="dt">block2 =</span> <span class="st">&quot;ss&quot;</span>,
@@ -498,10 +501,10 @@ df_new =<span class="st"> </span><span class="kw">filter</span>(df_new, response
 <span class="st">  </span><span class="kw">group_by</span>(stimuli,response)<span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">counter =</span> <span class="dv">1</span>)<span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">counter =</span> <span class="kw">sum</span>(counter))<span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">percentage =</span> counter<span class="op">/</span><span class="kw">sum</span>(counter),
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">percentage =</span> <span class="kw">round</span>(counter<span class="op">/</span><span class="kw">sum</span>(counter),<span class="dv">2</span>),
           <span class="dt">sum =</span> <span class="kw">sum</span>(counter))<span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(stimuli,percentage, response)<span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(stimuli, <span class="dt">value =</span> <span class="kw">round</span>(percentage, <span class="dv">2</span>))
+<span class="st">  </span><span class="kw">spread</span>(stimuli, <span class="dt">value =</span> percentage)
 
 <span class="kw">library</span>(knitr)
 <span class="kw">kable</span>(table.final, <span class="dt">caption =</span> <span class="st">&quot;Percentage of choice&quot;</span>)</code></pre></div>
@@ -520,43 +523,43 @@ df_new =<span class="st"> </span><span class="kw">filter</span>(df_new, response
 <tbody>
 <tr class="odd">
 <td align="left">f</td>
-<td align="right">0.3037975</td>
-<td align="right">0.2727273</td>
-<td align="right">0.0151515</td>
-<td align="right">0.1764706</td>
+<td align="right">0.30</td>
+<td align="right">0.27</td>
+<td align="right">0.02</td>
+<td align="right">0.18</td>
 <td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">j</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
-<td align="right">0.6363636</td>
-<td align="right">0.0147059</td>
-<td align="right">0.2142857</td>
+<td align="right">0.64</td>
+<td align="right">0.01</td>
+<td align="right">0.21</td>
 </tr>
 <tr class="odd">
 <td align="left">d</td>
-<td align="right">0.0126582</td>
-<td align="right">0.1428571</td>
+<td align="right">0.01</td>
+<td align="right">0.14</td>
 <td align="right">NA</td>
-<td align="right">0.7205882</td>
+<td align="right">0.72</td>
 <td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">g</td>
-<td align="right">0.6835443</td>
-<td align="right">0.5844156</td>
+<td align="right">0.68</td>
+<td align="right">0.58</td>
 <td align="right">NA</td>
-<td align="right">0.0882353</td>
+<td align="right">0.09</td>
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">h</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
-<td align="right">0.3484848</td>
+<td align="right">0.35</td>
 <td align="right">NA</td>
-<td align="right">0.7857143</td>
+<td align="right">0.79</td>
 </tr>
 </tbody>
 </table>

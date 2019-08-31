@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-08-30">
+<meta name="date" content="2019-08-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,8 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="tidy-your-data.html"><a href="tidy-your-data.html"><i class="fa fa-check"></i><b>5</b> Tidy your data</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> what is tidy data?</a></li>
 <li class="chapter" data-level="5.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#tools-in-tidyr"><i class="fa fa-check"></i><b>5.2</b> Tools in tidyr</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+<li class="chapter" data-level="5.2.1" data-path="tidy-your-data.html"><a href="tidy-your-data.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather ( )</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidy-your-data.html"><a href="tidy-your-data.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread ( )</a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidy-your-data.html"><a href="tidy-your-data.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate()</a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidy-your-data.html"><a href="tidy-your-data.html#unite"><i class="fa fa-check"></i><b>5.2.4</b> unite()</a></li>
 </ul></li>
@@ -144,9 +144,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="tranform-your-data.html"><a href="tranform-your-data.html"><i class="fa fa-check"></i><b>6</b> Tranform your data</a><ul>
 <li class="chapter" data-level="6.1" data-path="tranform-your-data.html"><a href="tranform-your-data.html#selecting-variables-of-interest"><i class="fa fa-check"></i><b>6.1</b> Selecting variables of interest</a></li>
 <li class="chapter" data-level="6.2" data-path="tranform-your-data.html"><a href="tranform-your-data.html#filtering-observations"><i class="fa fa-check"></i><b>6.2</b> Filtering observations</a></li>
-<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> changing the order of rows</a></li>
+<li class="chapter" data-level="6.3" data-path="tranform-your-data.html"><a href="tranform-your-data.html#changing-the-order-of-rows"><i class="fa fa-check"></i><b>6.3</b> Changing the order of rows</a></li>
 <li class="chapter" data-level="6.4" data-path="tranform-your-data.html"><a href="tranform-your-data.html#generating-new-variables"><i class="fa fa-check"></i><b>6.4</b> Generating new variables</a></li>
-<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> the pipeline “%&gt;%”</a></li>
+<li class="chapter" data-level="6.5" data-path="tranform-your-data.html"><a href="tranform-your-data.html#the-pipeline"><i class="fa fa-check"></i><b>6.5</b> The pipeline “%&gt;%”</a></li>
 <li class="chapter" data-level="6.6" data-path="tranform-your-data.html"><a href="tranform-your-data.html#summarizing"><i class="fa fa-check"></i><b>6.6</b> Summarizing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="build-your-own-function.html"><a href="build-your-own-function.html"><i class="fa fa-check"></i><b>7</b> Build your own function</a></li>
@@ -173,9 +173,110 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="build-your-own-function" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Build your own function</h1>
-<blockquote>
-<p>function_name = function(input){ do thing 1 do thing 2 return(output) }</p>
-</blockquote>
+<p>Combining the pipeline with different functions offered by tidyverse, you can have chunks of codes that fit into your specific needs of data analysis. But you may want to use these chunks again and again in the script you write. This will result in very long script. It is too bad for your eyes!!</p>
+<p>Thus we need to package these chunks into functions, so that every time we use them, we only need to refer to their names and put the dataframe in the parenthesis like we use other functions.</p>
+<p>That sound very cool! But is that difficult?</p>
+<p>noooooo! Not at all!</p>
+<p>Basically you only need to know the function structure and think of a name for your function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function_name = function(input){ </span>
+<span class="co">#  do thing 1</span>
+<span class="co">#  do thing 1</span>
+<span class="co">#  return(output)</span>
+<span class="co"># }</span>
+
+<span class="co"># let&#39;s make a function for data cleaning</span>
+
+data_clean =<span class="st"> </span><span class="cf">function</span>(input){
+  <span class="co">#copy and paste the chunk we wrote earlier</span>
+  <span class="co"># change this line &quot;df_final = df %&gt;% to</span>
+  input <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># selecting the columns we need</span>
+<span class="st">  </span><span class="kw">select</span>(., <span class="dt">subject =</span> <span class="st">&quot;Subject&quot;</span>,
+                <span class="dt">stimuli =</span> <span class="st">&quot;tone.Trial.&quot;</span>,
+                <span class="dt">response =</span> <span class="st">&quot;insex1.RESP&quot;</span>,
+                <span class="dt">response_rt =</span> <span class="st">&quot;insex1.RT&quot;</span>,
+                <span class="dt">block =</span> <span class="st">&quot;Procedure.Block.&quot;</span>,
+                <span class="dt">exp =</span> ExperimentName)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co">#filtering out useless data</span>
+<span class="st">  </span><span class="kw">filter</span>(block <span class="op">!=</span><span class="st"> &quot;pracproc&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(response) <span class="op">&amp;</span><span class="st"> </span>response <span class="op">!=</span><span class="st"> &quot;&quot;</span>)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># generating new variables based on old variables</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ISI =</span> <span class="kw">str_extract</span>(exp, <span class="st">&quot;2000|500&quot;</span>),
+         <span class="dt">block =</span> <span class="kw">recode</span>(block, 
+                         <span class="dt">block1 =</span> <span class="st">&quot;ss&quot;</span>, <span class="dt">block2 =</span> <span class="st">&quot;ss&quot;</span>,
+                         <span class="dt">block3 =</span> <span class="st">&quot;sd&quot;</span>, <span class="dt">block4 =</span> <span class="st">&quot;sd&quot;</span>,
+                         <span class="dt">block5 =</span> <span class="st">&quot;ds&quot;</span>, <span class="dt">block6 =</span> <span class="st">&quot;ds&quot;</span>,
+                         <span class="dt">block7 =</span> <span class="st">&quot;dd&quot;</span>)) -&gt;<span class="st"> </span>output
+  
+  <span class="kw">return</span>(output)
+}
+
+<span class="co"># done!!</span></code></pre></div>
+<p>Once you run the code, you will see a new function named <em>data_clean</em> appear in the <em>environment</em> tab on the right side of R-studio. This means a new function has been made.</p>
+<p>Now we can use our new function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+participant_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/participant_1.csv&quot;</span>)
+participant_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/participant_2.csv&quot;</span>)
+
+<span class="co">#head(participant_1)</span>
+
+<span class="co">#use the function</span>
+
+participant_1_clean =<span class="st"> </span><span class="kw">data_clean</span>(participant_<span class="dv">1</span>)
+
+<span class="kw">head</span>(participant_1_clean)</code></pre></div>
+<pre><code>##   subject stimuli response response_rt block                      exp ISI
+## 1     402      33        f         672    ds Assim_main_chinese_500ms 500
+## 2     402     315        j        2831    ds Assim_main_chinese_500ms 500
+## 3     402      33        f        1041    ds Assim_main_chinese_500ms 500
+## 4     402     315        j         363    ds Assim_main_chinese_500ms 500
+## 5     402      21        f        1234    ds Assim_main_chinese_500ms 500
+## 6     402      45        j         322    ds Assim_main_chinese_500ms 500</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># do the same thing for participant_2</span>
+participant_2_clean =<span class="st"> </span><span class="kw">data_clean</span>(participant_<span class="dv">2</span>)
+
+<span class="kw">head</span>(participant_2_clean )</code></pre></div>
+<pre><code>##   subject stimuli response response_rt block                         exp
+## 1     418     241        d         968    sd assim_main_vietnamese_500ms
+## 2     418     315        h        1036    sd assim_main_vietnamese_500ms
+## 3     418     241        g        1171    sd assim_main_vietnamese_500ms
+## 4     418      45        j         610    sd assim_main_vietnamese_500ms
+## 5     418      21        g         214    sd assim_main_vietnamese_500ms
+## 6     418      45        j        1945    sd assim_main_vietnamese_500ms
+##   ISI
+## 1 500
+## 2 500
+## 3 500
+## 4 500
+## 5 500
+## 6 500</code></pre>
+<p>We can make funtions that meet our specific requirements and reuse them later. For example I want to generate a percentage of choice table for each participant. Since the requirements are too specific, I may not find a ready-to-use package with this function. Thus I can make one like this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we reuse the chunk of codes we just made</span>
+
+choice_table =<span class="st"> </span><span class="cf">function</span>(input){
+  input<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(stimuli,response)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">counter =</span> <span class="dv">1</span>)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">counter =</span> <span class="kw">sum</span>(counter))<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">percentage =</span> <span class="kw">round</span>(counter<span class="op">/</span><span class="kw">sum</span>(counter),<span class="dv">2</span>),
+          <span class="dt">sum =</span> <span class="kw">sum</span>(counter))<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(stimuli,percentage, response)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(stimuli, <span class="dt">value =</span> percentage) -&gt;<span class="st"> </span>output
+  <span class="co"># do not forget this line</span>
+  <span class="kw">return</span>(output)
+}
+
+prt_<span class="dv">2</span> =<span class="st"> </span><span class="kw">choice_table</span>(participant_2_clean)
+
+prt_<span class="dv">2</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 6
+##   response  `21`  `33`  `45` `241` `315`
+##   &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 d           NA  0.11    NA  0.82 NA   
+## 2 g            1  0.89    NA  0.14 NA   
+## 3 h           NA NA       NA NA     0.96
+## 4 j           NA NA        1  0.04  0.04</code></pre>
+<p>Now the question is: do we need two function <em>data_clean</em> and <em>choice_table</em>?</p>
+<p>The answer is that it depends on your data and your workflow. Sometime you can put the two functions together and get the results straight away. But you may want to have the clean data for other purposes. In that case, you may want to keep the two functions seperate.</p>
 
 </div>
             </section>

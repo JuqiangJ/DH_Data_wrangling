@@ -22,6 +22,6 @@ knitr::include_graphics("img/DA_workflow.png")
 
 ## Data wrangling
 
-Data wrangling (see the above figure in red box) involves some basic procedures (importing, tidying and transforming) in the early stages of data analysis. R,and relevant packages, *tidyverse* in particular, provide a number of functions that can help us deal with data cleaning and tranformation. We will be learning how to use these functions in the follow sessions. 
+Data wrangling (see the above figure in red box) involves some basic procedures (importing, tidying and transforming). R,and its packages, *tidyverse* in particular, provide a number of functions that can help us deal with data cleaning and tranformation. We will be learning how to use these functions in the follow sessions. 
 
 
