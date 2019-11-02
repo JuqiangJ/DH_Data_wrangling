@@ -52,7 +52,12 @@ The **free version** is poweful enough.
 
  * library(package_name)
  
-## Programme
+## Data and workbook
+Please download the data and workbook with this link.
+
+https://drive.google.com/open?id=18xwfD7f-eekQ60W-2IZ2wBkCX2GL08_u
+ 
+## Schedule
 
 **Session 1** chapter 1 & 2
 
