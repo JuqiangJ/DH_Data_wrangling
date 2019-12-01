@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-11-03">
+<meta name="date" content="2019-12-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,13 +109,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-libraries-in-r"><i class="fa fa-check"></i><b>1.2</b> Installing libraries in R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#install-packages-and-library-packages"><i class="fa fa-check"></i><b>1.3</b> Install packages and library packages</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-and-workbook"><i class="fa fa-check"></i><b>1.4</b> Data and workbook</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Basic data structures in R</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#nominal-ordinal-intervalratio-variables"><i class="fa fa-check"></i><b>2.1</b> Nominal, ordinal, interval/ratio variables</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#types-of-variables-a-taxonomy"><i class="fa fa-check"></i><b>2.1</b> Types of variables: A taxonomy</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#categorical-variables-ordinal-vs.norminal"><i class="fa fa-check"></i><b>2.1.1</b> Categorical variables: ordinal vs. norminal</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#numeric-variables-discrete-or-continuous"><i class="fa fa-check"></i><b>2.1.2</b> Numeric variables: discrete or continuous</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#d-data-structure-vectors"><i class="fa fa-check"></i><b>2.2</b> 1D data structure: vectors</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#creating-vectors"><i class="fa fa-check"></i><b>2.2.1</b> Creating vectors</a></li>
-<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#creating-list-objects"><i class="fa fa-check"></i><b>2.2.2</b> creating list objects</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#creating-list-objects"><i class="fa fa-check"></i><b>2.2.2</b> Creating list objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#d-data-structures-matrice-and-data-frames"><i class="fa fa-check"></i><b>2.3</b> 2D data structures: matrice and data frames</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#what-if-i-want-to-change-column-names-or-add-variable-to-the-df"><i class="fa fa-check"></i><b>2.3.1</b> what if I want to change column names or add variable to the df?</a></li>
@@ -177,11 +179,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data-analysis-workflow" class="section level2">
 <h2><span class="header-section-number">3.1</span> Data analysis workflow</h2>
 <p>A common workflow for data analysis involves importing data, cleaning data, transforming data, visualizing and modeling data for reports or papers.</p>
-<p>If you have not worked with R before, you may use excel to do data cleaning and do simple tranformation work with pivot tables and save the results in a new spreadsheet. You can also draw bar charts, pie charts and histrograms in the spreadsheet. One thing I feel annoying is that in order to keep a record of what you have done, you need to store a couple of sheets inside a workbook. Still, you can miss some steps and cannot recall you have done after a month.</p>
+<p>You may have the experience of using excel to do data cleaning and simple tranformation work with pivot tables and save the results in a spreadsheet. You can also draw bar charts, pie charts and histrograms in the spreadsheet. One thing I feel annoying is that in order to keep a record of what I have done, I need to SAVE a couple of sheets inside a workbook. Still, I can miss some steps and cannot recall I have done after a month.</p>
 <p>When you need to do more complex stats modeling like ANOVA or linear regression, you may import the spreadsheet into SPSS and other stats packages.But if the data are not arranged in the way as required by these packages, chances are that you will have to go back to Excel again.</p>
-<p>If you are lucky and you get all the analysis done. Usually at the end of the project, you will find a number of .xsl or .csv files in your <strong>data</strong> folder. You may name them with the analysis you do or the date you generate them. But after six months, you may feel unsure about what is in these files, not to mention, others who want to reuse it.</p>
+<p>If you are lucky and you get all the analysis done. Usually at the end of the project, you end up having a number of .xsl or .csv files in your <strong>data</strong> folder. You may name them by the analysis you did or the date you generated them. But after six months, you can still feel unsure about what is exactly in these files, not to mention, to others who want to reuse it.</p>
 <p>But if you are using R, things can be easiler because each step in the data analysis is recorded and fully reproducible.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/DA_workflow.png&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:figure2"></span>
 <img src="img/DA_workflow.png" alt="Data analysis workflow" width="100%" />
 <p class="caption">

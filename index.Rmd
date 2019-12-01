@@ -33,7 +33,7 @@ Before we start our journey of data wrangling with R, you will need to install R
 ## Installing R and R studio
 
 Use this link [https://cloud.r-project.org/] to download R and select the proper version for your laptop.
-```{r nice-fig, fig.cap='Download R', out.width='100%', fig.asp=.75, fig.align='center'}
+```{r nice-fig, fig.cap='Download R', out.width='100%', fig.asp=.75, fig.align='center', echo=FALSE}
 
 knitr::include_graphics("img/installr.jpg")
 
@@ -48,19 +48,25 @@ The **free version** is poweful enough.
 
 ## Install packages and library packages
 
+Packages are collections of R functions, data, and compiled code in a well-defined format. The directory where packages are stored is called the library. R comes with a standard set of packages. Others are available for download and installation.
+
  * install.packages("package_name")
+Please type in:
+
+install.packages("tidyverse")
+
+*tidyverse* is a set of R packages for data science in R and it take a few minutes to download.
+
+Once installed, they have to be loaded into the session to be used.
 
  * library(package_name)
+ 
+Please type in 
+
+library(tidyverse)
  
 ## Data and workbook
 Please download the data and workbook with this link.
 
 https://drive.google.com/open?id=18xwfD7f-eekQ60W-2IZ2wBkCX2GL08_u
  
-## Schedule
-
-**Session 1** chapter 1 & 2
-
-**Session 2** chapter 3, 4 & 5
-
-**Session 3** chapter 3, 4 & 5

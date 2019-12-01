@@ -95,15 +95,3 @@ unite(table_new, new, year1, year2)# by default there is an underscore between t
 
 unite(table_new, new, year1, year2, sep = "")
 ```
-
-
-
-
-
-
-
-
-
-
-
-

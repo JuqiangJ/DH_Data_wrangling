@@ -25,7 +25,7 @@
 <meta name="author" content="Juqiang Chen">
 
 
-<meta name="date" content="2019-11-03">
+<meta name="date" content="2019-12-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,13 +109,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-libraries-in-r"><i class="fa fa-check"></i><b>1.2</b> Installing libraries in R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#install-packages-and-library-packages"><i class="fa fa-check"></i><b>1.3</b> Install packages and library packages</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-and-workbook"><i class="fa fa-check"></i><b>1.4</b> Data and workbook</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Basic data structures in R</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#nominal-ordinal-intervalratio-variables"><i class="fa fa-check"></i><b>2.1</b> Nominal, ordinal, interval/ratio variables</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#types-of-variables-a-taxonomy"><i class="fa fa-check"></i><b>2.1</b> Types of variables: A taxonomy</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#categorical-variables-ordinal-vs.norminal"><i class="fa fa-check"></i><b>2.1.1</b> Categorical variables: ordinal vs. norminal</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#numeric-variables-discrete-or-continuous"><i class="fa fa-check"></i><b>2.1.2</b> Numeric variables: discrete or continuous</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#d-data-structure-vectors"><i class="fa fa-check"></i><b>2.2</b> 1D data structure: vectors</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#creating-vectors"><i class="fa fa-check"></i><b>2.2.1</b> Creating vectors</a></li>
-<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#creating-list-objects"><i class="fa fa-check"></i><b>2.2.2</b> creating list objects</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#creating-list-objects"><i class="fa fa-check"></i><b>2.2.2</b> Creating list objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#d-data-structures-matrice-and-data-frames"><i class="fa fa-check"></i><b>2.3</b> 2D data structures: matrice and data frames</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#what-if-i-want-to-change-column-names-or-add-variable-to-the-df"><i class="fa fa-check"></i><b>2.3.1</b> what if I want to change column names or add variable to the df?</a></li>
@@ -175,7 +177,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">An Introduction to Data wrangling with R</h1>
 <p class="author"><em>Juqiang Chen</em></p>
-<p class="date"><em>2019-11-03</em></p>
+<p class="date"><em>2019-12-01</em></p>
 </div>
 <div id="prerequisites" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
@@ -186,8 +188,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Before we start our journey of data wrangling with R, you will need to install R on your laptop. R is multi-platform, which means you can install R on your PC or MAC.</p>
 <div id="installing-r-and-r-studio" class="section level2">
 <h2><span class="header-section-number">1.1</span> Installing R and R studio</h2>
-<p>Use this link [<a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>] to download R and select the proper version for your laptop.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/installr.jpg&quot;</span>)</code></pre></div>
+Use this link [<a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>] to download R and select the proper version for your laptop.
 <div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
 <img src="img/installr.jpg" alt="Download R" width="100%" />
 <p class="caption">
@@ -202,21 +203,23 @@ Figure 1.1: Download R
 </div>
 <div id="install-packages-and-library-packages" class="section level2">
 <h2><span class="header-section-number">1.3</span> Install packages and library packages</h2>
+<p>Packages are collections of R functions, data, and compiled code in a well-defined format. The directory where packages are stored is called the library. R comes with a standard set of packages. Others are available for download and installation.</p>
 <ul>
-<li><p>install.packages(“package_name”)</p></li>
-<li><p>library(package_name)</p></li>
+<li>install.packages(“package_name”) Please type in:</li>
 </ul>
+<p>install.packages(“tidyverse”)</p>
+<p><em>tidyverse</em> is a set of R packages for data science in R and it take a few minutes to download.</p>
+<p>Once installed, they have to be loaded into the session to be used.</p>
+<ul>
+<li>library(package_name)</li>
+</ul>
+<p>Please type in</p>
+<p>library(tidyverse)</p>
 </div>
 <div id="data-and-workbook" class="section level2">
 <h2><span class="header-section-number">1.4</span> Data and workbook</h2>
 <p>Please download the data and workbook with this link.</p>
 <p><a href="https://drive.google.com/open?id=18xwfD7f-eekQ60W-2IZ2wBkCX2GL08_u" class="uri">https://drive.google.com/open?id=18xwfD7f-eekQ60W-2IZ2wBkCX2GL08_u</a></p>
-</div>
-<div id="schedule" class="section level2">
-<h2><span class="header-section-number">1.5</span> Schedule</h2>
-<p><strong>Session 1</strong> chapter 1 &amp; 2</p>
-<p><strong>Session 2</strong> chapter 3, 4 &amp; 5</p>
-<p><strong>Session 3</strong> chapter 3, 4 &amp; 5</p>
 
 </div>
 </div>
